@@ -3,7 +3,7 @@ package pro.sky.javacoursepart2.hw213.service.impl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pro.sky.javacoursepart2.hw213.model.Employee;
 
@@ -16,14 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class DepartmentServiceImplTest {
-    @Mock
-    private EmployeeServiceImpl employeeService;
+    private final EmployeeServiceImpl employeeService = Mockito.mock(EmployeeServiceImpl.class);
     @InjectMocks
     private final DepartmentServiceImpl departmentService = new DepartmentServiceImpl(employeeService);
 
-    public DepartmentServiceImplTest(EmployeeServiceImpl employeeService) {
-        this.employeeService = employeeService;
-    }
+//    public DepartmentServiceImplTest(EmployeeServiceImpl employeeService) {
+//        this.employeeService = employeeService;
+//    }
 
     private final List<Employee> employees = new ArrayList<>(List.of(
             new Employee("Firstnamea", "Middlename", "Lastname", 1, 1.01),
@@ -58,7 +57,8 @@ class DepartmentServiceImplTest {
         when(employeeService.readEmployeeStorage()).thenReturn(employeesMapSource());
         int departmentId = 1;
         double expected = 2.03;
-        assertEquals(expected, departmentService.sumSalaryByDepartment(departmentId));
+        double actual = (int)(departmentService.sumSalaryByDepartment(departmentId) * 100) / 100.0;
+        assertEquals(expected, actual);
     }
 
     @Test

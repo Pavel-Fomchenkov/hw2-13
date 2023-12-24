@@ -5,6 +5,7 @@ import pro.sky.javacoursepart2.hw213.model.Employee;
 import pro.sky.javacoursepart2.hw213.service.DepartmentService;
 import pro.sky.javacoursepart2.hw213.service.EmployeeService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Employee> find(int departmentId) {
         return employeeService.readEmployeeStorage().values().stream()
                 .filter(v -> v.getDepartmentId() == departmentId)
+                .sorted(Comparator.comparingInt(Employee::getId))
                 .collect(Collectors.toList());
     }
 
@@ -54,6 +56,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Map<Integer, List<Employee>> groupByDepartment() {
         return employeeService.readEmployeeStorage().values().stream()
+                .sorted(Comparator.comparingInt(Employee::getId))
                 .collect(Collectors.groupingBy(Employee::getDepartmentId));
     }
 }
