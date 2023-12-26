@@ -12,7 +12,7 @@ class EmployeeServiceImplTest {
     private EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
 
     @Test
-    void setEmployeeStorageAndNestingAddEmployee() {
+    void testingAddEmployee() {
         employeeService.addEmployee("Ivan", "Ivanovich", "Ivanov", 1, 100.0);
         employeeService.addEmployee("Petr", "Petrovich", "Petrov", 2, 75.0);
         employeeService.addEmployee("Sidor", "Sidorovich", "Sidorov", 3, 50.0);

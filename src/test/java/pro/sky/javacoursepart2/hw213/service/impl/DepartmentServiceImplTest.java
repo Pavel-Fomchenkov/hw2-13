@@ -47,8 +47,8 @@ class DepartmentServiceImplTest {
     void shouldFindAllEmployeesFromGivenDepartment() {
         when(employeeService.readEmployeeStorage()).thenReturn(employeesMapSource());
         int departmentId = 2;
-        List<Employee> actual = departmentService.find(departmentId);
         List<Employee> expected = new ArrayList<>(List.of(employees.get(2), employees.get(3), employees.get(4)));
+        List<Employee> actual = departmentService.find(departmentId);
         assertEquals(expected, actual);
     }
 
